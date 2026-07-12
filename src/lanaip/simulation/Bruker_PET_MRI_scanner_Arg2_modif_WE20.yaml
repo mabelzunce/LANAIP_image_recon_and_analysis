@@ -1,0 +1,47 @@
+scanner_name: "Bruker_PET_MRI_scanner_Arg2_modif_WE20"
+simset_material: 29  #LYSO
+average_doi: 0.84    #Distancia media de interacciòn desde borde (no afecta mucho, se prueba)
+scanner_radius: 5.5  #11 cm es el diam interno del PET                       
+num_rings: 3       #ajustado cubrir el FOV                 
+axial_fov: 15
+z_crystal_size: 4.8  #pixelado del detector para 100 anillos                               
+transaxial_crystal_size: 4.8 #pixelado del detector para 100 anillos             
+crystal_thickness: 1 
+energy_resolution: 17 #Resol dato del scanner. Dice el supervisor (VER)
+num_aa_bins: 4       #bineado vistas 1/2 detectores por anillo                
+num_td_bins: 136      #bineado radial buscar. así da 1.1029 mm de bin_size
+min_energy_window: 409    #ventana a un 20% del pico 511
+max_energy_window: 613 
+coincidence_window: 5    #5 valor original 
+numberOfSubsets: 1       #parametros de reconstruccion
+numberOfIterations: 48   
+savingInterval: 16
+analytical_att_correction: 0
+stir_recons_att_corr: 1    #correcciòn de atenuaciòn por mapa
+analytic_scatt_corr_factor: 0.15 #Remueve 85% del scatter
+stir_scatt_corr_smoothing: 0
+stir_scatt_simulation: 0
+analytic_randoms_corr_factor: 0.2 #remueve 80% de randoms
+stir_randoms_corr_smoothing: 0
+recons_type: "OSEM3D"
+inter_iteration_filter: 1 # 0 no se está filtrando
+subiteration_interval: 48
+x_dir_filter_FWHM: 0.5
+y_dir_filter_FWHM: 1 
+z_dir_filter_FWHM: 0 
+psf_value: 0                       #Hace una convolución con psf para cuantificar la incertidumbre de efectos que no simulamos (efectos dentro del cristal). La ponemos a 0 para estudiar sin esta corrección.
+add_noise: 0                       #Como en el anterior filtrado se elimina el ruido, añadimos este analíticamente.
+max_segment: 2                    # cantidad de anillos -1     
+zoomFactor: 1.5                   # para pixel de 0.5mm. ratio entre FOV y bins vs FOV y tam imagen
+xyOutputSize: 120                
+zOutputSize:  200   #200                  
+zOutputVoxelSize: 3.27           
+
+# NOTAS
+
+# El pixel en z corresponde a la mitad del tamaño del cristal.
+# El pixel en x,y viene asociado al zoom factor.
+
+# bin_size=2*scanner_radius/num_td_bins
+# xyVoxelsize=10*bin_size/zoom
+# zVoxelsize=z_crystal_size/2
